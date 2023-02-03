@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -11,7 +11,9 @@ function Incidents() {
         <Col><h3 className="Incidents-Header m-2">Latest Incident</h3></Col>
       </Row>
       <Row>
-        <Col><h4 className="Incidents-Title m-2 text-center">Expected maintenance schedule for 2023-01-31 04:30:00 GMT-7</h4></Col>
+        <Col className="d-flex align-items-center">
+          <h4 className="Incidents-Title m-2 text-center">Expected maintenance schedule for 2023-01-31 04:30:00 GMT-7</h4>
+        </Col>
         <Col xs={8}><p className="Incidents-Body m-2">
             The following services will be down on January 31st between 4:30 AM PST and 6:30 AM PST while we perform regular maintenance:<br/>
             - Authentication<br/>
@@ -34,7 +36,7 @@ function Incidents() {
 function App() {
   return (
     <div className="App">
-      <Incidents/>
+      <Incidents />
     </div>
   );
 }

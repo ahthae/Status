@@ -1,3 +1,7 @@
+.test-filler:empty {
+    height: 1000px;
+}
+
 .Incidents {
     border: 1px solid #adadad;
     background-color: #747c9251;
@@ -12,3 +16,5 @@
     font-weight: bold;
     color: #8bad8c;
 }
+
+@import "~bootstrap/scss/bootstrap";

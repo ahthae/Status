@@ -1,0 +1,40 @@
+.LatestIncident * {
+    margin: 0 0.5em 0 0.5em;
+}
+
+.LatestIncident {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    grid-template-rows: 0.4fr 1fr 0.2fr;
+    grid-template-areas:
+        'header header'
+        'title body'
+        'dropdown dropdown';
+}
+
+.LatestIncident-Header {
+    font-weight: lighter;
+    grid-area: header;
+    margin: 0.75em;
+}
+
+.LatestIncident-Title {
+    font-weight: bold;
+    color: #8bad8c;
+    grid-area: title;
+    display: flex;
+    text-align: center;
+    align-self: center;
+}
+
+.LatestIncident-Body {
+    grid-column: 2 / 2;
+    grid-area: body;
+}
+
+.LatestIncident-DropdownButton {
+    grid-column: 1 / 2;
+    grid-area: dropdown;
+    justify-self: center;
+    margin: 0.5em;
+}

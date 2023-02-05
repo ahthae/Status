@@ -7,71 +7,13 @@
     box-sizing: border-box;
 }
 
-.App .Incidents {
+.App .LatestIncident {
     border: 1px solid #adadad;
     border-radius: 1em;
     background-color: #747c9251;
     color: #747c92;
 }
 
-.Incidents-Container {
+.LatestIncident-Container {
     justify-content: center;
-}
-
-
-
-.NavigationBar {
-    color: #747c92;
-    display: flex;
-}
-
-.NavigationBar h1 {
-    font-weight: normal;
-    flex: 1;
-}
-
-.NavigationBar-ButtonWrapper { 
-    align-self: center;
-}
-
-
-.Incidents * {
-    margin: 0 0.5em 0 0.5em;
-}
-
-.Incidents {
-    display: grid;
-    grid-template-columns: 0.3fr 1fr;
-    grid-template-rows: 0.4fr 1fr 0.2fr;
-    grid-template-areas:
-        'header header'
-        'title body'
-        'dropdown dropdown';
-}
-
-.Incidents-Header {
-    font-weight: lighter;
-    grid-area: header;
-    margin: 0.75em;
-}
-
-.Incidents-Title {
-    font-weight: bold;
-    color: #8bad8c;
-    grid-area: title;
-    display: flex;
-    text-align: center;
-    align-self: center;
-}
-
-.Incidents-Body {
-    grid-column: 2 / 2;
-    grid-area: body;
-}
-
-.Incidents-DropdownButton {
-    grid-column: 1 / 2;
-    grid-area: dropdown;
-    justify-self: center;
-    margin: 0.5em;
 }

@@ -1,0 +1,13 @@
+.NavigationBar {
+    color: #747c92;
+    display: flex;
+}
+
+.NavigationBar h1 {
+    font-weight: normal;
+    flex: 1;
+}
+
+.NavigationBar-ButtonWrapper { 
+    align-self: center;
+}

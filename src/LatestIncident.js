@@ -11,11 +11,8 @@ export default function LatestIncident() {
           - API<br/>
           - Git<br/>
       </p>
-      <svg className="LatestIncident-DropdownButton" width="2em" height="2em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
-      <path d="M40 28L24 40L8 28" stroke="#747c92" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M8 10H40" stroke="#747c92" stroke-width="4" stroke-linecap="round"/>
-      <path d="M8 18H40" stroke="#747c92" stroke-width="4" stroke-linecap="round"/>
+      <svg className="LatestIncident-DropdownButton" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" fill="currentColor" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
       </svg>
     </div>
   );

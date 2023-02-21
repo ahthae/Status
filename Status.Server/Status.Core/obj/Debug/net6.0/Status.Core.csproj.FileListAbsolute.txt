@@ -1,0 +1,12 @@
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/bin/Debug/net6.0/Status.Core.deps.json
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/bin/Debug/net6.0/Status.Core.dll
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/bin/Debug/net6.0/Status.Core.pdb
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/Status.Core.csproj.AssemblyReference.cache
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/Status.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/Status.Core.AssemblyInfoInputs.cache
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/Status.Core.AssemblyInfo.cs
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/Status.Core.csproj.CoreCompileInputs.cache
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/Status.Core.dll
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/refint/Status.Core.dll
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/Status.Core.pdb
+/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/Debug/net6.0/ref/Status.Core.dll

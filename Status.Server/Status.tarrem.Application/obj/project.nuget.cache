@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "6UMsxeyG+5hYrcOGVO60OwVHgIYrT2Ut9iErA4FBj5CXPVKDKaAddZg2fQK0VETP0VI3h8ivEmqO9g4wmgRUHQ==",
+  "success": true,
+  "projectFilePath": "/home/tarrem/Development/active/Status/Status.Server/Status.tarrem.Application/Status.Core.csproj",
+  "expectedPackageFiles": [
+    "/home/tarrem/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.13/microsoft.aspnetcore.app.ref.6.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}

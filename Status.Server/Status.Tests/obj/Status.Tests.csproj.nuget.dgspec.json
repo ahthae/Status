@@ -1,0 +1,312 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/tarrem/Development/active/Status/Status.Server/Status.Tests/Status.Tests.csproj": {}
+  },
+  "projects": {
+    "/home/tarrem/Development/active/Status/Status.Server/Status.Api/Status.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/tarrem/Development/active/Status/Status.Server/Status.Api/Status.Api.csproj",
+        "projectName": "Status.Api",
+        "projectPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Api/Status.Api.csproj",
+        "packagesPath": "/home/tarrem/.nuget/packages/",
+        "outputPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Api/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/tarrem/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/tarrem/Development/active/Status/Status.Server/Status.Core/Status.Core.csproj": {
+                "projectPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Core/Status.Core.csproj"
+              },
+              "/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/Status.Infrastructure.csproj": {
+                "projectPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/Status.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.JsonPatch": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.18.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.Newtonsoft": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/tarrem/Development/active/Status/Status.Server/Status.Core/Status.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/tarrem/Development/active/Status/Status.Server/Status.Core/Status.Core.csproj",
+        "projectName": "Status.Core",
+        "projectPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Core/Status.Core.csproj",
+        "packagesPath": "/home/tarrem/.nuget/packages/",
+        "outputPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/tarrem/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.13, 6.0.13]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/Status.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/Status.Infrastructure.csproj",
+        "projectName": "Status.Infrastructure",
+        "projectPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/Status.Infrastructure.csproj",
+        "packagesPath": "/home/tarrem/.nuget/packages/",
+        "outputPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/tarrem/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/tarrem/Development/active/Status/Status.Server/Status.Core/Status.Core.csproj": {
+                "projectPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Core/Status.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.18.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.13, 6.0.13]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/tarrem/Development/active/Status/Status.Server/Status.Tests/Status.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/tarrem/Development/active/Status/Status.Server/Status.Tests/Status.Tests.csproj",
+        "projectName": "Status.Tests",
+        "projectPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Tests/Status.Tests.csproj",
+        "packagesPath": "/home/tarrem/.nuget/packages/",
+        "outputPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/tarrem/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/tarrem/Development/active/Status/Status.Server/Status.Api/Status.Api.csproj": {
+                "projectPath": "/home/tarrem/Development/active/Status/Status.Server/Status.Api/Status.Api.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.3.2, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

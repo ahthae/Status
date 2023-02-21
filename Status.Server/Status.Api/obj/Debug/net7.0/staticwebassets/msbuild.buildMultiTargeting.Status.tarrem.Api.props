@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Status.tarrem.Api.props" />
+</Project>

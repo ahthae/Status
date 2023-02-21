@@ -1,0 +1,15 @@
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/Status.Infrastructure.csproj.AssemblyReference.cache
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/Status.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/Status.Infrastructure.AssemblyInfoInputs.cache
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/Status.Infrastructure.AssemblyInfo.cs
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/Status.Infrastructure.csproj.CoreCompileInputs.cache
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/bin/Debug/net6.0/Status.Infrastructure.deps.json
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/bin/Debug/net6.0/Status.Infrastructure.dll
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/bin/Debug/net6.0/Status.Infrastructure.pdb
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/bin/Debug/net6.0/Status.Core.dll
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/bin/Debug/net6.0/Status.Core.pdb
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/Status.Infrastructure.csproj.CopyComplete
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/Status.Infrastructure.dll
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/refint/Status.Infrastructure.dll
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/Status.Infrastructure.pdb
+/home/tarrem/Development/active/Status/Status.Server/Status.Infrastructure/obj/Debug/net6.0/ref/Status.Infrastructure.dll

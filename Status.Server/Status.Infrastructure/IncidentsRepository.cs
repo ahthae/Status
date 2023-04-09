@@ -13,7 +13,6 @@ namespace Status.Infrastructure
         {
             _incidents = new MongoClient(databaseSettings.Value.ConnectionString).GetDatabase(databaseSettings.Value.DatabaseName)
                                                                                  .GetCollection<Incident>(databaseSettings.Value.IncidentsCollectionName);
-            EnsureCreated(); //TODO
         }
 
         public async Task<IEnumerable<Incident>> GetIncidentsAsync()
@@ -39,25 +38,6 @@ namespace Status.Infrastructure
         public async Task RemoveAsync(string id)
         {
             await _incidents.DeleteOneAsync(x => x.Id == id);
-        }
-
-        private void EnsureCreated()
-        {
-             if (_incidents.CountDocuments(x => true) != 0) return;
-
-            List<Incident> data = new();
-
-            for (int i = 0; i < 10; i++)
-            {
-                data.Add(new Incident
-                {
-                    Title = "Power outage",
-                    Description = "We're currently investigating a power outage issue.",
-                    Start = DateTime.Now,
-                });
-            }
-
-            _incidents.InsertMany(data);
         }
     }
 }

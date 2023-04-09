@@ -2,11 +2,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
-using Status.Api.Models;
 using Status.Infrastructure.Models;
-using Status.Api.Services;
 using Status.Core.Models;
 using Status.Infrastructure;
+using Status.Infrastructure.Workers;
 
 // Register MongoDb class mappings
 BsonClassMap.RegisterClassMap<Incident>(cm =>
@@ -19,16 +18,17 @@ BsonClassMap.RegisterClassMap<Incident>(cm =>
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOptions<ServersOptions>()
-    .Bind(builder.Configuration.GetSection(ServersOptions.configurationSectionName))
+builder.Services.AddOptions<StatusOptions>()
     .ValidateDataAnnotations();
 
 builder.Services.AddHttpClient();
 
+builder.Services.AddHostedService<StatusWorker>();
+
 // Add services to the container.
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("StatusDatabase"));
 builder.Services.AddSingleton<IIncidentsRepository, IncidentsRepository>();
-builder.Services.AddSingleton<ResponseService>();
+builder.Services.AddSingleton<IServerRepository, ServerRepository>();
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

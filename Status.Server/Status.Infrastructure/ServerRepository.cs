@@ -2,13 +2,14 @@
 using Microsoft.Extensions.Logging;
 using Status.Core.Models;
 using Status.Infrastructure.Models;
+using System.Security.Cryptography;
 
 namespace Status.Infrastructure
 {
     public class ServerRepository : IServerRepository
     {
         private readonly ILogger<ServerRepository> _logger;
-        private List<Server> _servers = new(); //TODO persistence layer
+        private List<Server> _servers; //TODO persistence layer
 
         public ServerRepository(ILogger<ServerRepository> logger, IConfiguration configuration) {
             _logger = logger;
@@ -28,6 +29,10 @@ namespace Status.Infrastructure
         public void AddServer(Server server)
         {
             _servers.Add(server);
+        }
+        public void AddResponse(Server server, Response response)
+        {
+            server.Responses.Add(response);
         }
     }
 }

@@ -6,6 +6,7 @@ using Status.Infrastructure.Models;
 using Status.Core.Models;
 using Status.Infrastructure;
 using Status.Infrastructure.Workers;
+using Status.Infrastructure.Services;
 
 // Register MongoDb class mappings
 BsonClassMap.RegisterClassMap<Incident>(cm =>
@@ -23,13 +24,14 @@ builder.Services.AddOptions<StatusOptions>()
 
 builder.Services.AddHttpClient();
 
-builder.Services.AddHostedService<ResponseWorker>();
-
 // Add services to the container.
 builder.Services.Configure<StatusOptions>(builder.Configuration);
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("StatusDatabase"));
 builder.Services.AddSingleton<IIncidentsRepository, IncidentsRepository>();
 builder.Services.AddSingleton<IServerRepository, ServerRepository>();
+builder.Services.AddSingleton<IResponseService, ResponseService>();
+
+builder.Services.AddHostedService<ResponseWorker>();
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,86 +1,33 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Status.Core.Models;
 using Status.Infrastructure.Models;
-using System.Diagnostics;
+using Status.Infrastructure.Services;
 
 namespace Status.Infrastructure.Workers
 {
     public class ResponseWorker : BackgroundService
     {
         private readonly ILogger<ResponseWorker> _logger;
-        private readonly HttpClient _httpClient;
-        private readonly IServerRepository _serverRepository;
         private readonly PeriodicTimer _timer;
+        private readonly IResponseService _responseService;
 
-        public ResponseWorker(ILogger<ResponseWorker> logger, IOptions<StatusOptions> options, IServerRepository serverRepository, HttpClient httpClient)
+        public ResponseWorker(
+            ILogger<ResponseWorker> logger,
+            IOptions<StatusOptions> options,
+            IResponseService responseService)
         {
             _logger = logger;
-            _httpClient = httpClient;
-            _serverRepository = serverRepository;
-
             _timer = new PeriodicTimer(options.Value.Rate);
+            _responseService = responseService;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            while (!stoppingToken.IsCancellationRequested && await _timer.WaitForNextTickAsync(stoppingToken))
+            while (!cancellationToken.IsCancellationRequested && await _timer.WaitForNextTickAsync(cancellationToken))
             {
-                Dictionary<Server, Response> responses = new();
-                List<Task<(Server, HttpResponseMessage?,TimeSpan)>> tasks = new();
-
-                foreach (var server in _serverRepository.GetServers())
-                {
-                    responses.Add(server, new Response()
-                    {
-                        Timestamp = DateTime.Now,
-                        Success = true
-                    });
-                }
-
-                foreach (var response in responses)
-                {
-                    tasks.Add(SendRequest(response.Key, stoppingToken));
-                }
-
-                while(tasks.Count > 0)
-                {
-                    int i = Task.WaitAny(tasks.ToArray());
-                    (Server, HttpResponseMessage?, TimeSpan) task = await tasks[i];
-
-                    Server server = task.Item1;
-                    Response response = responses[server];
-                    response.ResponseTime = task.Item3;
-
-                    HttpResponseMessage? httpResponse = task.Item2;
-                    if (httpResponse is null || !httpResponse.IsSuccessStatusCode)
-                    {
-                        response.Success = false;
-                    }
-                    response.Information = httpResponse?.ReasonPhrase;
-
-                    server.Responses.Add(response);
-
-                    tasks.Remove(tasks[i]);
-                }
+                await _responseService.RequestStatusFromAllServers(cancellationToken);
             }
-        }
-
-        private async Task<(Server, HttpResponseMessage?, TimeSpan)> SendRequest(Server server, CancellationToken stoppingToken)
-        {
-            _logger.LogInformation("Querying {server}", server.Url);
-            HttpResponseMessage? httpResponse = null;
-            Stopwatch responseTimer = Stopwatch.StartNew();
-            try
-            {
-                httpResponse = await _httpClient.GetAsync(server.Url, stoppingToken).ConfigureAwait(false);
-            }
-            catch (HttpRequestException ex) { }
-            responseTimer.Stop();
-
-            return (server, httpResponse, responseTimer.Elapsed);
-
         }
     }
 }

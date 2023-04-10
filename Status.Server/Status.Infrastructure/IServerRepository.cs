@@ -9,5 +9,7 @@ namespace Status.Infrastructure
         public Server GetServer(string url);
 
         public void AddServer(Server server);
+
+        public void AddResponse(Server server, Response response);
     }
 }

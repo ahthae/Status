@@ -4,11 +4,11 @@ using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
 using Status.Infrastructure.Models;
 using Status.Core.Models;
-using Status.Infrastructure;
 using Status.Infrastructure.Workers;
 using Status.Infrastructure.Services;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
+using Status.Infrastructure.Repositories;
 
 // Register MongoDb class mappings
 BsonClassMap.RegisterClassMap<Incident>(cm =>

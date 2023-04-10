@@ -1,11 +1,11 @@
 ﻿
 using Xunit.Abstractions;
 using RichardSzalay.MockHttp;
-using Status.Infrastructure;
 using Moq;
 using Status.Core.Models;
 using Status.Infrastructure.Services;
 using System.Net;
+using Status.Infrastructure.Repositories;
 
 namespace Status.Tests
 {

@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using Status.Core.Models;
 using Status.Infrastructure.Models;
 
-namespace Status.Infrastructure
+namespace Status.Infrastructure.Repositories
 {
     public class ServerRepository : IServerRepository
     {
@@ -12,9 +12,10 @@ namespace Status.Infrastructure
         private readonly IMongoCollection<Server> _servers;
 
         public ServerRepository(
-            ILogger<ServerRepository> logger, 
+            ILogger<ServerRepository> logger,
             MongoClient db,
-            IOptions<DatabaseSettings> options) {
+            IOptions<DatabaseSettings> options)
+        {
             _logger = logger;
             _servers = db.GetDatabase(options.Value.DatabaseName)
                 .GetCollection<Server>(options.Value.ServersCollectionName);
@@ -28,6 +29,11 @@ namespace Status.Infrastructure
         public async Task<Server> GetServerAsync(string id)
         {
             return await _servers.Find(s => s.Id == id).SingleAsync();
+        }
+
+        public async Task<IEnumerable<Server>> GetServersByUri(Uri url)
+        {
+            return await _servers.Find(s => s.Url.Equals(url)).ToListAsync();
         }
 
         public async Task AddServerAsync(Server server)

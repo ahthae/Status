@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Status.Core.Models;
-using Status.Infrastructure;
+using Status.Infrastructure.Repositories;
 
 namespace Status.Api.Controllers;
 
@@ -20,6 +20,8 @@ public class IncidentsController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<ActionResult<IEnumerable<Incident>>> Get()
     {
         var res = await _incidentsRepository.GetIncidentsAsync();
@@ -30,11 +32,25 @@ public class IncidentsController : ControllerBase
     }
 
     [HttpGet("{id:length(24)}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<ActionResult<IEnumerable<Incident>>> Get([FromRoute] string id)
     {
         var res = await _incidentsRepository.GetIncidentAsync(id);
 
         if (res is null) return NotFound();
+
+        return Ok(res);
+    }
+
+    [HttpGet("after")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<ActionResult<IEnumerable<Incident>>> Get([FromQuery] DateTime after)
+    {
+        var res = await _incidentsRepository.GetIncidentsAfter(after);
+
+        if (!res.Any()) return NoContent();
 
         return Ok(res);
     }

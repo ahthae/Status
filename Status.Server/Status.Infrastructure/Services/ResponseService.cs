@@ -1,6 +1,7 @@
 ﻿using DnsClient.Internal;
 using Microsoft.Extensions.Logging;
 using Status.Core.Models;
+using Status.Infrastructure.Repositories;
 using System.Diagnostics;
 
 namespace Status.Infrastructure.Services

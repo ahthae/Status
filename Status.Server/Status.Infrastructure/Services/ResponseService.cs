@@ -30,8 +30,7 @@ namespace Status.Infrastructure.Services
             {
                 responses.Add(server, new Response()
                 {
-                    Timestamp = DateTime.Now,
-                    Success = true
+                    Timestamp = DateTime.Now
                 });
             }
 
@@ -52,11 +51,8 @@ namespace Status.Infrastructure.Services
                 response.ResponseTime = task.Item3;
 
                 HttpResponseMessage? httpResponse = task.Item2;
-                if (httpResponse is null || !httpResponse.IsSuccessStatusCode)
-                {
-                    response.Success = false;
-                }
-                response.Information = httpResponse?.ReasonPhrase;
+                response.StatusCode = httpResponse?.StatusCode;
+                response.ReasonPhrase = httpResponse?.ReasonPhrase;
 
                 _serverRepository.AddResponse(server, response);
 

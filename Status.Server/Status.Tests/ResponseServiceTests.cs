@@ -5,8 +5,6 @@ using Status.Infrastructure;
 using Moq;
 using Status.Core.Models;
 using Status.Infrastructure.Services;
-using System.Collections;
-using MongoDB.Driver.Core.Configuration;
 using System.Net;
 
 namespace Status.Tests
@@ -33,7 +31,7 @@ namespace Status.Tests
 
         [Theory]
         [MemberData(nameof(GetServers))]
-        public async void Should_CreateSuccessResponses(IEnumerable<Server> servers)
+        public async void Should_CreateNonNullStatusCodeResponse(IEnumerable<Server> servers)
         {
             // Arrange
             var mockRepo = new Mock<IServerRepository>();
@@ -51,12 +49,12 @@ namespace Status.Tests
 
             // Assert
             mockHttp.VerifyNoOutstandingExpectation();
-            Assert.All(servers, s => Assert.All(s.Responses, r => Assert.True(r.Success)));
+            Assert.All(servers, s => Assert.All(s.Responses, r => Assert.NotNull(r.StatusCode)));
         }
 
         [Theory]
         [MemberData(nameof(GetServers))]
-        public async void Should_CreateFailureResponsesOnHttpStatusCodeFailure(List<Server> servers)
+        public async void Should_CreateNonNullStatusCodeResponsesOnHttpStatusFailureCode(List<Server> servers)
         {
             // Arrange
             var mockRepo = new Mock<IServerRepository>();
@@ -74,12 +72,12 @@ namespace Status.Tests
 
             // Assert
             mockHttp.VerifyNoOutstandingExpectation();
-            Assert.All(servers, s => Assert.All(s.Responses, r => Assert.False(r.Success)));
+            Assert.All(servers, s => Assert.All(s.Responses, r => Assert.NotNull(r.StatusCode)));
         }
 
         [Theory]
         [MemberData(nameof(GetServers))]
-        public async void Should_CreateFailureResponsesOnHttpRequestException(List<Server> servers)
+        public async void Should_CreateNullResponsesOnHttpRequestException(List<Server> servers)
         {
             // Arrange
             var mockRepo = new Mock<IServerRepository>();
@@ -97,7 +95,7 @@ namespace Status.Tests
 
             // Assert
             mockHttp.VerifyNoOutstandingExpectation();
-            Assert.All(servers, s => Assert.All(s.Responses, r => Assert.False(r.Success)));
+            Assert.All(servers, s => Assert.All(s.Responses, r => Assert.Null(r.StatusCode)));
         }
     }
 }

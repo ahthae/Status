@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Status.Core.Models;
 using Status.Infrastructure.Models;
-using System.Security.Cryptography;
 
 namespace Status.Infrastructure
 {

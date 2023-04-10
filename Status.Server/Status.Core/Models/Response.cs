@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace Status.Core.Models
 {
@@ -8,7 +9,7 @@ namespace Status.Core.Models
         public TimeSpan ResponseTime { get; set; }
         [Required]
         public DateTime Timestamp { get; set; }
-        public bool Success { get; set; }
-        public string? Information { get; set; }
+        public HttpStatusCode? StatusCode { get; set; }
+        public string? ReasonPhrase { get; set; }
     }
 }

@@ -1,26 +1,26 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Status.Core.Models;
 using Status.Infrastructure.Models;
 using System.Diagnostics;
 
 namespace Status.Infrastructure.Workers
 {
-    public class StatusWorker : BackgroundService
+    public class ResponseWorker : BackgroundService
     {
-        private readonly ILogger<StatusWorker> _logger;
+        private readonly ILogger<ResponseWorker> _logger;
         private readonly HttpClient _httpClient;
         private readonly IServerRepository _serverRepository;
         private readonly PeriodicTimer _timer;
 
-        public StatusWorker(ILogger<StatusWorker> logger, IConfiguration configuration, IServerRepository serverRepository, HttpClient httpClient)
+        public ResponseWorker(ILogger<ResponseWorker> logger, IOptions<StatusOptions> options, IServerRepository serverRepository, HttpClient httpClient)
         {
             _logger = logger;
             _httpClient = httpClient;
             _serverRepository = serverRepository;
 
-            _timer = new PeriodicTimer(configuration.Get<StatusOptions>().Rate);
+            _timer = new PeriodicTimer(options.Value.Rate);
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -28,17 +28,15 @@ namespace Status.Infrastructure.Workers
             while (!stoppingToken.IsCancellationRequested && await _timer.WaitForNextTickAsync(stoppingToken))
             {
                 Dictionary<Server, Response> responses = new();
-                List<Task<(Server, HttpResponseMessage ?,TimeSpan)>> tasks = new();
+                List<Task<(Server, HttpResponseMessage?,TimeSpan)>> tasks = new();
 
                 foreach (var server in _serverRepository.GetServers())
                 {
-                    Response response = new Response()
+                    responses.Add(server, new Response()
                     {
                         Timestamp = DateTime.Now,
                         Success = true
-                    };
-
-                    responses.Add(server, response);
+                    });
                 }
 
                 foreach (var response in responses)

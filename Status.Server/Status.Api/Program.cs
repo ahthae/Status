@@ -23,9 +23,10 @@ builder.Services.AddOptions<StatusOptions>()
 
 builder.Services.AddHttpClient();
 
-builder.Services.AddHostedService<StatusWorker>();
+builder.Services.AddHostedService<ResponseWorker>();
 
 // Add services to the container.
+builder.Services.Configure<StatusOptions>(builder.Configuration);
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("StatusDatabase"));
 builder.Services.AddSingleton<IIncidentsRepository, IncidentsRepository>();
 builder.Services.AddSingleton<IServerRepository, ServerRepository>();

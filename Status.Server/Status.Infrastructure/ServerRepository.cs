@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using Status.Core.Models;
 using Status.Infrastructure.Models;
 
@@ -8,30 +9,42 @@ namespace Status.Infrastructure
     public class ServerRepository : IServerRepository
     {
         private readonly ILogger<ServerRepository> _logger;
-        private List<Server> _servers; //TODO persistence layer
+        private readonly IMongoCollection<Server> _servers;
 
-        public ServerRepository(ILogger<ServerRepository> logger, IConfiguration configuration) {
+        public ServerRepository(
+            ILogger<ServerRepository> logger, 
+            MongoClient db,
+            IOptions<DatabaseSettings> options) {
             _logger = logger;
-            _servers = configuration.Get<StatusOptions>().Servers;
+            _servers = db.GetDatabase(options.Value.DatabaseName)
+                .GetCollection<Server>(options.Value.ServersCollectionName);
         }
 
-        public IEnumerable<Server> GetServers()
+        public async Task<IEnumerable<Server>> GetServersAsync()
         {
-            return _servers;
+            return await _servers.Find(_ => true).ToListAsync();
         }
 
-        public Server GetServer(string url)
+        public async Task<Server> GetServerAsync(string id)
         {
-            return _servers.Where(server => server.Url.ToString() == url).First();
+            return await _servers.Find(s => s.Id == id).SingleAsync();
         }
 
-        public void AddServer(Server server)
+        public async Task AddServerAsync(Server server)
         {
-            _servers.Add(server);
+            await _servers.InsertOneAsync(server);
         }
-        public void AddResponse(Server server, Response response)
+
+        public async Task UpdateServer(Server server)
         {
+            await _servers.ReplaceOneAsync(s => s.Id == server.Id, server);
+        }
+
+        public async Task AddResponseAsync(string id, Response response)
+        {
+            var server = await _servers.Find(s => s.Id == id).SingleAsync();
             server.Responses.Add(response);
+            await UpdateServer(server);
         }
     }
 }

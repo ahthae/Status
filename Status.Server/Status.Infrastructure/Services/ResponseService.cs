@@ -26,7 +26,7 @@ namespace Status.Infrastructure.Services
             Dictionary<Server, Response> responses = new();
             List<Task<(Server, HttpResponseMessage?, TimeSpan)>> tasks = new();
 
-            foreach (var server in _serverRepository.GetServers())
+            foreach (var server in await _serverRepository.GetServersAsync())
             {
                 responses.Add(server, new Response()
                 {
@@ -54,7 +54,7 @@ namespace Status.Infrastructure.Services
                 response.StatusCode = httpResponse?.StatusCode;
                 response.ReasonPhrase = httpResponse?.ReasonPhrase;
 
-                _serverRepository.AddResponse(server, response);
+                await _serverRepository.AddResponseAsync(server.Id, response);
 
                 tasks.Remove(tasks[i]);
             }

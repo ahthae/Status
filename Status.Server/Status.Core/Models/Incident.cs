@@ -4,6 +4,7 @@ namespace Status.Core.Models
 {
     public class Incident
     {
+        [Key]
         public string? Id { get; set; }
         [Required]
         public DateTime Start { get; set; }

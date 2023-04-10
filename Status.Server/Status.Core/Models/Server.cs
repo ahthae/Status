@@ -4,6 +4,8 @@ namespace Status.Core.Models
 {
     public class Server
     {
+        [Key]
+        public string? Id { get; set; }
         [Required]
         [Url]
         public Uri Url { get; set; }

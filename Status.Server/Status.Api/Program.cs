@@ -7,9 +7,18 @@ using Status.Core.Models;
 using Status.Infrastructure;
 using Status.Infrastructure.Workers;
 using Status.Infrastructure.Services;
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
 
 // Register MongoDb class mappings
 BsonClassMap.RegisterClassMap<Incident>(cm =>
+{
+    cm.AutoMap();
+    cm.MapIdProperty(c => c.Id)
+        .SetIdGenerator(StringObjectIdGenerator.Instance)
+        .SetSerializer(new StringSerializer(BsonType.ObjectId));
+});
+BsonClassMap.RegisterClassMap<Server>(cm =>
 {
     cm.AutoMap();
     cm.MapIdProperty(c => c.Id)
@@ -32,6 +41,12 @@ builder.Services.AddSingleton<IServerRepository, ServerRepository>();
 builder.Services.AddSingleton<IResponseService, ResponseService>();
 
 builder.Services.AddHostedService<ResponseWorker>();
+
+builder.Services.AddSingleton<MongoClient>(provider =>
+{
+    IOptions<DatabaseSettings> options = provider.GetService<IOptions<DatabaseSettings>>() ?? throw new ArgumentNullException(nameof(provider));
+    return new(options.Value.ConnectionString);
+});
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

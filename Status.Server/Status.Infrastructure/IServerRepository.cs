@@ -4,12 +4,14 @@ namespace Status.Infrastructure
 {
     public interface IServerRepository
     {
-        public IEnumerable<Server> GetServers();
+        public Task<IEnumerable<Server>> GetServersAsync();
 
-        public Server GetServer(string url);
+        public Task<Server> GetServerAsync(string id);
 
-        public void AddServer(Server server);
+        public Task AddServerAsync(Server server);
 
-        public void AddResponse(Server server, Response response);
+        public Task UpdateServer(Server server);
+
+        public Task AddResponseAsync(string id, Response response);
     }
 }

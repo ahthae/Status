@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Options;
-using MongoDB.Bson.Serialization.IdGenerators;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Status.Core.Models;
 using Status.Infrastructure.Models;
@@ -8,11 +8,16 @@ namespace Status.Infrastructure
 {
     public class IncidentsRepository : IIncidentsRepository
     {
+        private readonly ILogger<IncidentsRepository> _logger;
         private readonly IMongoCollection<Incident> _incidents;
-        public IncidentsRepository(IOptions<DatabaseSettings> databaseSettings)
+        public IncidentsRepository(
+            ILogger<IncidentsRepository> logger,
+            MongoClient db,
+            IOptions<DatabaseSettings> options)
         {
-            _incidents = new MongoClient(databaseSettings.Value.ConnectionString).GetDatabase(databaseSettings.Value.DatabaseName)
-                                                                                 .GetCollection<Incident>(databaseSettings.Value.IncidentsCollectionName);
+            _logger = logger;
+            _incidents = db.GetDatabase(options.Value.DatabaseName)
+                .GetCollection<Incident>(options.Value.IncidentsCollectionName);
         }
 
         public async Task<IEnumerable<Incident>> GetIncidentsAsync()

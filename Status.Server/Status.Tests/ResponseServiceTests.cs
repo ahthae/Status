@@ -16,11 +16,20 @@ namespace Status.Tests
             yield return new object[]
             {
                 new List<Server> {
-                    new Server() { Url = new("https://test1.status.test"), Responses = new() },
-                    new Server() { Url = new("https://test2.status.test"), Responses = new() },
-                    new Server() { Url = new("https://test3.status.test"), Responses = new() }
+                    new Server() { Id = "1", Url = new("https://test1.status.test"), Responses = new() },
+                    new Server() { Id = "2", Url = new("https://test2.status.test"), Responses = new() },
+                    new Server() { Id = "3", Url = new("https://test3.status.test"), Responses = new() }
                 }
             };
+        }
+
+        private static Mock<IServerRepository> MockRepoFactory(IEnumerable<Server> servers)
+        {
+            var mockRepo = new Mock<IServerRepository>();
+            mockRepo.Setup(repo => repo.GetServersAsync()).ReturnsAsync(servers);
+            mockRepo.Setup(repo => repo.AddResponseAsync(It.IsAny<string>(), It.IsAny<Response>()))
+                .Callback<string, Response>((id, r) => servers.Where(s => s.Id == id).First().Responses.Add(r));
+            return mockRepo;
         }
 
         private readonly ITestOutputHelper _output;
@@ -34,11 +43,8 @@ namespace Status.Tests
         public async void Should_CreateNonNullStatusCodeResponse(IEnumerable<Server> servers)
         {
             // Arrange
-            var mockRepo = new Mock<IServerRepository>();
+            var mockRepo = MockRepoFactory(servers);
             var mockHttp = new MockHttpMessageHandler();
-            mockRepo.Setup(repo => repo.GetServers()).Returns(servers);
-            mockRepo.Setup(repo => repo.AddResponse(It.IsAny<Server>(), It.IsAny<Response>()))
-                .Callback<Server, Response>((s, r) => s.Responses.Add(r));
             foreach (var server in servers)
                 mockHttp.Expect(server.Url.ToString()).Respond("application/json", "{'testkey' : 'testval'}");
 
@@ -54,14 +60,11 @@ namespace Status.Tests
 
         [Theory]
         [MemberData(nameof(GetServers))]
-        public async void Should_CreateNonNullStatusCodeResponsesOnHttpStatusFailureCode(List<Server> servers)
+        public async void Should_CreateNonNullStatusCodeResponsesOnHttpStatusFailureCode(IEnumerable<Server> servers)
         {
             // Arrange
-            var mockRepo = new Mock<IServerRepository>();
+            var mockRepo = MockRepoFactory(servers);
             var mockHttp = new MockHttpMessageHandler();
-            mockRepo.Setup(repo => repo.GetServers()).Returns(servers);
-            mockRepo.Setup(repo => repo.AddResponse(It.IsAny<Server>(), It.IsAny<Response>()))
-                .Callback<Server, Response>((s, r) => s.Responses.Add(r));
             foreach (var server in servers)
                 mockHttp.Expect(server.Url.ToString()).Respond(HttpStatusCode.BadGateway);
 
@@ -77,14 +80,11 @@ namespace Status.Tests
 
         [Theory]
         [MemberData(nameof(GetServers))]
-        public async void Should_CreateNullResponsesOnHttpRequestException(List<Server> servers)
+        public async void Should_CreateNullResponsesOnHttpRequestException(IEnumerable<Server> servers)
         {
             // Arrange
-            var mockRepo = new Mock<IServerRepository>();
+            var mockRepo = MockRepoFactory(servers);
             var mockHttp = new MockHttpMessageHandler();
-            mockRepo.Setup(repo => repo.GetServers()).Returns(servers);
-            mockRepo.Setup(repo => repo.AddResponse(It.IsAny<Server>(), It.IsAny<Response>()))
-                .Callback<Server, Response>((s, r) => s.Responses.Add(r));
             foreach (var server in servers)
                 mockHttp.Expect(server.Url.ToString()).Throw(new HttpRequestException());
 

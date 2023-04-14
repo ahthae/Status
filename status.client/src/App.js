@@ -1,8 +1,8 @@
 import './App.scss';
 import React from 'react';
-import LatestIncident from './LatestIncident';
-import NavigationBar from './NavigationBar';
-import StatusGraphs from './StatusGraphs';
+import LatestIncident from './components/LatestIncident';
+import NavigationBar from './components/NavigationBar';
+import StatusGraphs from './components/StatusGraphs';
 
 const testServers = [
   {

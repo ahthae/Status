@@ -1,4 +1,4 @@
-import styles from './styles/NavigationBar.module.scss';
+import styles from '../styles/NavigationBar.module.scss';
 
 export default function NavigationBar() {
   return (

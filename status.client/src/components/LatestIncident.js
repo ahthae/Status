@@ -1,4 +1,4 @@
-import styles from './styles/LatestIncident.module.scss';
+import styles from '../styles/LatestIncident.module.scss';
 
 export default function LatestIncident() {
   return (

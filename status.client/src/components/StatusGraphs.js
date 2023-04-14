@@ -1,4 +1,4 @@
-import './styles/StatusGraphs.module.scss'
+import '../styles/StatusGraphs.module.scss'
 import StatusGraph from "./StatusGraph";
 
 export default function StatusGraphs({ servers }) {

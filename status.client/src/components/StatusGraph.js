@@ -1,4 +1,4 @@
-import styles from './styles/StatusGraph.module.scss'
+import styles from '../styles/StatusGraph.module.scss'
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 function parseTimeSpan(timeSpanStr) {

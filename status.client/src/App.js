@@ -85,7 +85,7 @@ function App() {
     <div className="App">
       <NavigationBar />
       <StatusGraphs servers={testServers} />
-      <LatestIncident className="LatestIncident-Contaier" />
+      <LatestIncident />
     </div>
   );
 }

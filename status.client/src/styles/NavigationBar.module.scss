@@ -1,0 +1,13 @@
+.navigationBar {
+    color: #747c92;
+    display: flex;
+
+    .title {
+        font-weight: normal;
+        flex: 1;
+    }
+
+    .menu { 
+        align-self: center;
+    }
+}
